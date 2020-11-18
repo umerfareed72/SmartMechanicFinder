@@ -24,7 +24,7 @@ class Navs extends Component {
         >
           <img
             src="assets/images/appicon.png"
-            style={{ height: 25, width: 25, margin: 5 }}
+            style={{ height: 25, width: 25, margin: 5 , objectFit:'cover'}}
             alt="App"
           ></img>
           <a

@@ -11,6 +11,7 @@ class MNav extends Component {
   };
 
   render() {
+    
     return (
       <nav
         class="navbar navbar-expand-md bg-light navbar-light"
@@ -25,7 +26,7 @@ class MNav extends Component {
         >
           <img
             src="assets/images/appicon.png"
-            style={{ height: 25, width: 25, margin: 5 }}
+            style={{ height: 25, width: 25, margin: 5, objectFit:'cover' }}
             alt="App"
           ></img>
           <a

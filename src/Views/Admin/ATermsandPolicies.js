@@ -16,7 +16,7 @@ class ATermsandPolicies extends Component {
       >
         <ANav></ANav>
         <Container fluid>
-          <Row>
+          <Row style={{ backgroundColor: "rgba(0,0,0,0.7)" }} >
             <Col
               className="col-sm-12 Homeimg "
               style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
@@ -65,10 +65,6 @@ class ATermsandPolicies extends Component {
                             With supporting text below as a natural lead-in to
                             additional content.
                           </p>
-                          <button class="btn btn-danger" >Delete</button>
-                    <Link to='/UpdatePolicy'>
-                          <button class="btn btn-primary" style={{marginLeft:20,width:80}}>Edit</button>
-                          </Link>
                         </div>
                           
                       </div>
@@ -90,67 +86,11 @@ class ATermsandPolicies extends Component {
                             With supporting text below as a natural lead-in to
                             additional content.
                           </p>
-                          <button class="btn btn-danger" >Delete</button>
-                    <Link to='/UpdatePolicy'>
-                          <button class="btn btn-primary" style={{marginLeft:20,width:80}}>Edit</button>
-                          </Link>
                         </div>
                           
                       </div>
                     
-                      <hr></hr>
-                      <Row >
-                      <Col className="col-sm-8">
-                        <Col
-                          className="col-sm-12 Aligncenter"
-                          style={{ marginTop: 30, marginBottom: 30 }}
-                        >
-                          <h3 className="heading2">
-                            <u className="ub">Add Mechanic Services </u>
-                          </h3>
-                        </Col>{" "}
-                        <form action="/action_page.php ">
-                          <div class="form-group ">
-                            <label for="usr">Title:</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="usr"
-                              name="username"
-                              placeholder="Enter Title "
-                            />
-                          </div>
-
-                          <div class="form-group ">
-                            <label for="usr">Description:</label>
-
-                            <textarea
-                              class="form-control"
-                              rows="5"
-                              id="comment"
-                            ></textarea>
-                          </div>
-                          <div class="form-group">
-                            <button
-                              type="submit"
-                              class="btnSubmit  btn-primary "
-                              value="Login"
-                              style={{
-                                width: 100,
-                                height: 40,
-                                marginTop: 20,
-                              }}
-                            >
-                              Add
-                            </button>
-                          </div>
-                        </form>
-                      </Col>
-                      <Col className="col-sm-4 centerword">
-                   <img src='assets/images/appicon.png' style={{height:300,width:300}} alt='app'></img>
-                      </Col>
-                      </Row>
-                    </div>
+                       </div>
                   </div>
                 </div>
               </div>

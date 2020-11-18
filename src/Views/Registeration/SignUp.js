@@ -213,6 +213,7 @@ class SignUp extends Component {
                                 className="Circle"
                                 src={this.state.photo}
                                 alt="Circle"
+                                style={{ objectFit:'cover'}}
                               ></img>
                             )}
                           </Col>

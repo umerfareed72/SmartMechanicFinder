@@ -8,49 +8,50 @@ class Footer extends Component {
         <div class="container-fluid text-center text-md-left">
           <div class="row text-center text-md-left mt-3 pb-3">
             <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 class="text-uppercase mb-4 font-weight-bold">Smart Auto Mechanic Finder</h6>
+              <h6 class="text-uppercase mb-4 font-weight-bold">
+                Smart Auto Mechanic Finder
+              </h6>
               <p>
-                Help Customers and Mechanics for better solution of vehicle services. 
+                Help Customers and Mechanics for better solution of vehicle
+                services.
               </p>
             </div>
             <hr class="w-100 clearfix d-md-none"></hr>
-         
+
             <hr class="w-100 clearfix d-md-none"></hr>
 
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
               <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
               <p>
-                <Link to='/Setting' className="white">
+                <Link to="/Setting" className="white">
                   Your Account
                 </Link>
               </p>
-           
-               <p >
-               <Link className="white" to='/TermsandPolicy'>
-              Terms & Policy
-               </Link>
-                 </p>
 
-              <p >
-               <Link className="white" to='/Complaints'>
-              Complaints
-               </Link>
-                 </p>
-            
+              <p>
+                <Link className="white" to="/TermsandPolicy">
+                  Terms & Policy
+                </Link>
+              </p>
+
+              <p>
+                <Link className="white" to="/Help">
+                  Help
+                </Link>
+              </p>
             </div>
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
               <h6 class="text-uppercase mb-4 font-weight-bold">More Info</h6>
-              <p >
-               <Link className="white" to='/ContactUs'>
-              Contact Us
-               </Link>
-                 </p>
-                 <p >
-               <Link className="white" to='/About'>
-            About
-               </Link>
-                 </p>
-           
+              <p>
+                <Link className="white" to="/ContactUs">
+                  Contact Us
+                </Link>
+              </p>
+              <p>
+                <Link className="white" to="/About">
+                  About
+                </Link>
+              </p>
             </div>
 
             <hr class="w-100 clearfix d-md-none" />

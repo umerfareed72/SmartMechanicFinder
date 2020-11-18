@@ -26,6 +26,7 @@ class Dashboard extends Component {
                     alt="Los Angeles"
                     width="100%"
                     height="500"
+                    style={{ objectFit:'cover'}}
 
                   />
                   <div class="carousel-caption">
@@ -38,6 +39,7 @@ class Dashboard extends Component {
                     src="paint.jpg"
                     alt="Chicago"
                     width="100%"
+                    style={{ objectFit:'cover'}}
                     height="500"
                   />
                   <div class="carousel-caption">
@@ -50,6 +52,7 @@ class Dashboard extends Component {
                     src="electric.jpg"
                     alt="New York"
                     width="100%"
+                    style={{ objectFit:'cover'}}
                     height="500"
                   />
                   <div class="carousel-caption">
@@ -61,6 +64,7 @@ class Dashboard extends Component {
                   <img
                     src="body.jpg"
                     alt="New York"
+                    style={{ objectFit:'cover'}}
                     width="100%"
                     height="500"
                   />
@@ -122,10 +126,10 @@ class Dashboard extends Component {
               </h6>
               <div class="d-flex justify-content-center">
                 <a href="Home.html" target="_blank">
-                  <img src="assets/images/playStore.png"  alt='playstore'/>
+                  <img src="assets/images/playStore.png"  alt='playstore' style={{ objectFit:'cover'}}/>
                 </a>
                 <a href="Home.html" target="_blank">
-                  <img src="assets/images/appStore.png"alt='appstore' />
+                  <img src="assets/images/appStore.png"alt='appstore' style={{ objectFit:'cover'}} />
                 </a>
               </div>
             </Col>

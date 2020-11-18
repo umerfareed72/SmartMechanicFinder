@@ -243,7 +243,7 @@ class About extends Component {
                 </Col>
                 <Col className="col-md-3">
                   <Card>
-                    <Card.Img variant="top" src="assets/images/s1.jpg" alt='Cosupervisor' />
+                    <Card.Img variant="top" src="assets/images/farooq.jpeg" alt='Cosupervisor' style={{height:250, objectFit:'cover'}} />
                     <Card.Body>
                       <Card.Title>Dr Farooq Ahmad</Card.Title>
                       <Card.Text style={{ fontSize: 14, color: "lightgray" }}>
@@ -264,7 +264,7 @@ class About extends Component {
 
                 <Col className="col-md-3">
                   <Card style={this.cards}>
-                    <Card.Img variant="top" src="assets/images/s1.jpg" alt='Cosupervisor' />
+                    <Card.Img variant="top" src="assets/images/dummy1.jpg" alt='Cosupervisor' style={{height:250, objectFit:'cover'}}/>
                     <Card.Body>
                       <Card.Title>Sir Abdul Kareem Shahid</Card.Title>
                       <Card.Text style={{ fontSize: 14, color: "lightgray" }}>
@@ -287,7 +287,7 @@ class About extends Component {
               <Row style={{ marginTop: 50 }}>
                 <Col className="col-md-4">
                   <Card style={this.cards}>
-                    <Card.Img variant="top" src="assets/images/s1.jpg" alt='Cosupervisor'  />
+                    <Card.Img variant="top" src="assets/images/dummy1.jpg" alt='Cosupervisor'  style={{height:350, objectFit:'cover'}} />
                     <Card.Body>
                       <Card.Title>Sir Zaheer Ahmad Gondal</Card.Title>
                       <Card.Text style={{ fontSize: 14, color: "lightgray" }}>
@@ -307,7 +307,7 @@ class About extends Component {
 
                 <Col className="col-md-4">
                   <Card style={this.cards}>
-                    <Card.Img variant="top" src="assets/images/s1.jpg" alt='Cosupervisor'   />
+                    <Card.Img variant="top" src="assets/images/Mian.jpg" alt='Cosupervisor'  style={{height:350, objectFit:'cover'}} />
                     <Card.Body>
                       <Card.Title>Muhammad Umer Fareed</Card.Title>
                       <Card.Text style={{ fontSize: 14, color: "lightgray" }}>
@@ -326,7 +326,7 @@ class About extends Component {
                 </Col>
                 <Col className="col-md-4">
                   <Card style={this.cards}>
-                    <Card.Img variant="top" src="assets/images/s1.jpg" alt='Cosupervisor'   />
+                    <Card.Img variant="top" src="assets/images/Hassan.jpeg" alt='Cosupervisor' style={{height:350, objectFit:'cover'}}  />
                     <Card.Body>
                       <Card.Title>Hassan Ahmad</Card.Title>
                       <Card.Text style={{ fontSize: 14, color: "lightgray" }}>

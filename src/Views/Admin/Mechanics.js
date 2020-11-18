@@ -145,7 +145,7 @@ class Mechanics extends Component {
                                   <Card.Img
                                     variant="top"
                                     src={data.photo}
-                                    style={{ height: 180, width: 200 }}
+                                    style={{ height: 180, width: 200, objectFit:'cover' }}
                                     alt="Cosupervisor"
                                   />
                                   <Card.Body>

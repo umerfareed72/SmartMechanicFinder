@@ -38,6 +38,7 @@ class MSetting extends Component {
                     src={auth.user.photo}
                     alt=""
                     class="user-profile"
+                    style={{ objectFit:'cover'}}
                   />
                 )}
 
@@ -67,7 +68,7 @@ class MSetting extends Component {
                       <Link to="/MTermsandPolicy">Terms & Policy</Link>
                     </li>
                     <li>
-                      <Link to="/MComplaints">Complaints</Link>
+                      <Link to="/MHelp">MHelp</Link>
                     </li>
                   </ul>
                 </div>

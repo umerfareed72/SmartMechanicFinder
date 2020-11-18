@@ -32,8 +32,8 @@ class MFooter extends Component {
                  </p>
 
               <p >
-               <Link className="white" to='/Complaints'>
-              Complaints
+               <Link className="white" to='/MHelp'>
+              Help
                </Link>
                  </p>
             

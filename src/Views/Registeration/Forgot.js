@@ -18,7 +18,8 @@ class Forgot extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit = () => {
+  onSubmit = (e) => {
+    e.preventDefault()
     axios
       .put(URL.Url + "forgetpass/", {
         nickname: this.state.nickname,

@@ -3,6 +3,8 @@ import Navbar from "../../Navigations/Navbar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../Config/Contants";
+import {toast} from "react-toastify"
+toast.configure()
 class MForgot extends Component {
   constructor(props) {
     super(props);
@@ -16,19 +18,29 @@ class MForgot extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit = () => {
+  onSubmit = (e) => {
+    e.preventDefault()
     axios
-      .put(URL.Url + "forgetpass/", {
+      .put(URL.Url + "mforgetpass/", {
         nickname: this.state.nickname,
         npassword: this.state.npassword,
         email: this.state.email,
       })
       .then(async (res) => {
         console.log(res.data);
-        alert(this.state.email);
+        toast("Successfully Password Changed", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+     
       })
       .catch((error) => {
         console.log(error);
+        toast("Error Password Not Changed", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+     
       });
   };
 

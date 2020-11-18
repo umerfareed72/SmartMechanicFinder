@@ -199,6 +199,7 @@ class MEditProfile extends Component {
                               <img
                                 className="Circle"
                                 src={this.state.photo}
+                                style={{ objectFit:'cover'}}
                                 alt="Circle"
                               ></img>
                             )}

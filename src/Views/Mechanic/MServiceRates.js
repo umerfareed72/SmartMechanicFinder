@@ -92,7 +92,7 @@ class MServiceRates extends Component {
               <img
                 src="assets/images/rates.jpg"
                 alt="rates"
-                style={{ height: 350, width: 400 }}
+                style={{ height: 350, width: 400  ,objectFit:'cover'}}
               ></img>
             </Col>
 

@@ -34,6 +34,7 @@ class MechanicDashboard extends Component {
                     alt="Los Angeles"
                     width="100%"
                     height="500"
+                    style={{ objectFit:'cover'}}
                   />
                   <div class="carousel-caption">
                     <h3>Engine</h3>
@@ -46,6 +47,7 @@ class MechanicDashboard extends Component {
                     alt="Chicago"
                     width="100%"
                     height="500"
+                    style={{ objectFit:'cover'}}
                   />
                   <div class="carousel-caption">
                     <h3>Painter</h3>
@@ -58,6 +60,7 @@ class MechanicDashboard extends Component {
                     alt="New York"
                     width="100%"
                     height="500"
+                    style={{ objectFit:'cover'}}
                   />
                   <div class="carousel-caption">
                     <h3>Electrician</h3>
@@ -70,6 +73,7 @@ class MechanicDashboard extends Component {
                     alt="New York"
                     width="100%"
                     height="500"
+                    style={{ objectFit:'cover'}}
                   />
                   <div class="carousel-caption">
                     <h3>Body</h3>
@@ -130,10 +134,10 @@ class MechanicDashboard extends Component {
               </h6>
               <div class="d-flex justify-content-center">
                 <a href="Home.html" target="_blank">
-                  <img src="assets/images/playStore.png" alt="playstore" />
+                  <img src="assets/images/playStore.png" alt="playstore" style={{ objectFit:'cover'}}/>
                 </a>
                 <a href="Home.html" target="_blank">
-                  <img src="assets/images/appStore.png" alt="appstore" />
+                  <img src="assets/images/appStore.png" alt="appstore" style={{ objectFit:'cover'}} />
                 </a>
               </div>
             </Col>

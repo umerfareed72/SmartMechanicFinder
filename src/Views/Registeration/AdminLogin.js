@@ -105,11 +105,11 @@ class AdminLogin extends Component {
                   </button>
                   {/* </Link> */}
                 </div>
-                <div class="form-group">
+                {/* <div class="form-group">
                   <Link to="/AForgot" class="ForgetPwd" value="Login">
                     Forgot Password?
                   </Link>
-                </div>
+                </div> */}
               </form>
             </div>
           </div>

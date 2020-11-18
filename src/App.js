@@ -9,7 +9,7 @@ import EditProfile from "../src/Views/User/EditProfile";
 import "bootstrap/dist/css/bootstrap.css";
 import Setting from "../src/Views/User/Setting";
 import ServiceRates from "../src/Views/User/ServiceRates";
-import Complaints from "../src/Views/User/Complaints";
+import Help from "./Views/User/Help";
 import TermsandPolicy from "./Views/User/TermsandPolicy";
 import Forgot from "./Views/Registeration/Forgot";
 
@@ -18,7 +18,7 @@ import Forgot from "./Views/Registeration/Forgot";
 import MechanicDashboard from "../src/Views/Mechanic/MechanicDashboard";
 import MAbout from "../src/Views/Mechanic/MAbout";
 import MConatctUs from "../src/Views/Mechanic/MContactUs";
-import MComplaints from "../src/Views/Mechanic/MComplaints";
+import MHelp from "../src/Views/Mechanic/MHelp";
 import MEditProfile from "../src/Views/Mechanic/MEditProfile";
 import MServiceRates from "../src/Views/Mechanic/MServiceRates";
 import MSetting from "../src/Views/Mechanic/MSetting";
@@ -30,12 +30,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminDashboard from "../src/Views/Admin/AdminDashboard";
 import AdminLogin from "./Views/Registeration/AdminLogin";
 import AServiceRates from "./Views/Admin/AServiceRates";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Mechanics from "./Views/Admin/Mechanics";
 import About from "./Views/User/About";
 import Users from "./Views/Admin/Users";
 import ATermsandPolicies from "./Views/Admin/ATermsandPolicies";
-import AComplaints from "./Views/Admin/AComplaints";
+import UHelplist from "./Views/Admin/UHelplist";
+import MHelplist from "./Views/Admin/MHelplist";
 import AForgot from "./Views/Registeration/AForgot";
 
 
@@ -54,6 +55,8 @@ if(localStorage.usertoken){
 SetAuthorizationtoken(localStorage.getItem('usertoken'))
 store.dispatch(set_CurrentUser(jwt.decode(localStorage.usertoken)))
 }
+
+
 class App extends React.Component {
 
   render() {
@@ -62,7 +65,8 @@ class App extends React.Component {
       <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/" component={Login} />
+        <Route exact path="/" component={Login} />
+         
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/Forgot" component={Forgot} />
@@ -75,7 +79,7 @@ class App extends React.Component {
           <Route path="/Setting" component={Setting} />
           <Route path="/About" component={About} />
           <Route path="/ServiceRates" component={ServiceRates} />
-          <Route path="/Complaints" component={Complaints} />
+          <Route path="/Help" component={Help} />
           <Route path="/EditProfile" component={EditProfile} />
           <Route path="/TermsandPolicy" component={TermsandPolicy} />
           <Route path="/UpdateRate" component={UpdateRate} />
@@ -83,7 +87,7 @@ class App extends React.Component {
           {/* Mechanic Routes */}
           <Route path="/MechanicDashboard" component={MechanicDashboard} />
           <Route path="/MAbout" component={MAbout} />
-          <Route path="/MComplaints" component={MComplaints} />
+          <Route path="/MHelp" component={MHelp} />
           <Route path="/MServiceRates" component={MServiceRates} />
           <Route path="/MContactUs" component={MConatctUs} />
           <Route path="/MSetting" component={MSetting} />
@@ -99,8 +103,8 @@ class App extends React.Component {
           <Route path="/AAbout" component={AAbout} />
           <Route path="/AContactUs" component={AContactUs} />
          
-          <Route path="/AComplaints" component={AComplaints} />
-
+          <Route path="/UHelplist" component={UHelplist} />
+          <Route path="/MHelplist" component={MHelplist} />
           </Switch>
       </Router>
       </Provider>

@@ -33,6 +33,7 @@ class Setting extends Component {
                     src={auth.user.photo}
                     alt=""
                     class="user-profile"
+                    style={{ objectFit:'cover'}}
                   />
                 )}
 
@@ -56,7 +57,7 @@ class Setting extends Component {
                       <Link to="/TermsandPolicy">Terms & Policy</Link>
                     </li>
                     <li>
-                      <Link to="/Complaints">Complaints</Link>
+                      <Link to="/Help">Help</Link>
                     </li>
                   </ul>
                 </div>

@@ -47,7 +47,7 @@ class AdminDashboard extends Component {
       registereduser: "",
       paintissue: "",
       bookedmcount: "",
-      mechaniccount:''
+      mechaniccount: "",
     };
   }
 
@@ -117,7 +117,7 @@ class AdminDashboard extends Component {
       .catch((error) => {
         console.log(error);
       });
-      axios
+    axios
       .get(URL.Url + "mechaniccount")
       .then((response) => {
         if (response) {
