@@ -85,7 +85,7 @@ class SignUp extends Component {
   };
   componentDidMount() {
     const { auth } = this.props;
-    if (auth.flag == true) {
+    if (auth.flag === true) {
       this.setState({ FirstName: auth.data.givenName });
       this.setState({ photo: auth.data.imageUrl });
       this.setState({ LastName: auth.data.familyName });

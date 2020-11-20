@@ -39,12 +39,7 @@ class Login extends Component {
     this.props
       .login(this.state)
       .then((res) => {
-        this.props.history
-          .push("MechanicDashboard")
-          toast("Successfully Login", {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500,
-          });
+        this.props.history.push("MechanicDashboard");
       })
       .catch((er) => {
         toast("Invalid  Credentials", {

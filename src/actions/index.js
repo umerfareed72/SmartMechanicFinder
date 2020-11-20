@@ -3,7 +3,8 @@ import { URL } from "../Config/Contants";
 import SetAuthorizationtoken from "../Config/SetAututhorizationtoken";
 import { Set_CurrentUser,google_Login,Set_Rate} from "../actions/Types";
 import jwt from "jsonwebtoken";
-
+import {toast} from "react-toastify"
+toast.configure()
 export function logout() {
   return (dispatch) => {
     localStorage.removeItem("usertoken");
@@ -22,11 +23,22 @@ export function set_CurrentUser(user) {
 export function login(data) {
   return (dispatch) => {
     return axios.post(URL.Url + "mechanicsignin", data).then((res) => {
+    if(res.data.message==='blocked'){
+      toast("Blocked by Admin", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500,
+      });
+    }else{
       const token = res.data.token;
       localStorage.setItem("usertoken", token);
       SetAuthorizationtoken(token);
       dispatch(set_CurrentUser(jwt.decode(token)));
-    });
+      toast("Successfully Login", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 1500,
+      });
+    }
+       });
   };
 }
 

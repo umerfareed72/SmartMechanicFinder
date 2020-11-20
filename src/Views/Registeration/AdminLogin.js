@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../Navigations/Navbar";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { adminlogin } from "../../actions/index";
 import { toast } from "react-toastify";

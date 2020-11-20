@@ -4,58 +4,52 @@ import ANav from "../../Navigations/ANav";
 import AFooter from "../../Components/AFooter";
 
 import axios from "axios";
-import {URL} from "../../Config/Contants";
+import { URL } from "../../Config/Contants";
 import { toast } from "react-toastify";
 toast.configure();
 function searchingFor(term) {
   return function (x) {
-    return x.firstname.toLowerCase().includes(term.toLowerCase()) || !term
-  }
+    return x.firstname.toLowerCase().includes(term.toLowerCase()) || !term;
+  };
 }
 class Users extends Component {
-constructor(props){
-  super(props)
-  this.state={
-    loading:false,
-    users:[],
-    search:''
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      users: [],
+      search: "",
+    };
   }
-}
-getUser=()=>{
-axios.get(URL.Url+'users').then((res)=>{
-  this.setState({users:res.data,loading:true })
- 
-})
-}
+  getUser = () => {
+    axios.get(URL.Url + "users").then((res) => {
+      this.setState({ users: res.data, loading: true });
+    });
+  };
 
-deleteUser = (id) => {
-  axios
-    .delete(URL.Url + 'deleteuser/' + this.state.users[id]._id)
-    .then((del) => {
-      toast("User Deleted", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
-      })
-      window.location.reload(false)
-
-
+  deleteUser = (id) => {
+    axios
+      .delete(URL.Url + "deleteuser/" + this.state.users[id]._id)
+      .then((del) => {
+        toast("User Deleted", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
         });
-};
+        window.location.reload(false);
+      });
+  };
 
+  componentDidMount() {
+    this.getUser();
+  }
+  userChangeHandler = (val) => {
+    this.setState({
+      search: val.target.value,
+    });
+  };
 
-
-componentDidMount(){
-  this.getUser()
-}
-userChangeHandler = (val) => {
-  this.setState({
-    search: val.target.value,
-  });
-};
-
-
-render() {
-const {users,loading,search}=this.state
+  render() {
+    const { users, loading, search } = this.state;
     return (
       <body
         style={{
@@ -108,76 +102,90 @@ const {users,loading,search}=this.state
                         className="col-sm-4"
                         style={{ marginTop: 30, marginBottom: 30 }}
                       >
-                               <form>
-                <div class="row">
-                    <div class="input-group mb-3 col-sm-12">
-                      <input 
-                       value={search}
-                       onChange={this.userChangeHandler}
-                      type="text" class="form-control border-right-0" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
-                        <div class="input-group-prepend bg-white">
-                            <span class="input-group-text border-left-0 rounded-right bg-white" id="basic-addon1"><i className="fa">&#xf002;</i></span>
-                        </div>
-                    </div>
-                </div>
-            </form>
+                        <form>
+                          <div class="row">
+                            <div class="input-group mb-3 col-sm-12">
+                              <input
+                                value={search}
+                                onChange={this.userChangeHandler}
+                                type="text"
+                                class="form-control border-right-0"
+                                placeholder="Username"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                              />
+                              <div class="input-group-prepend bg-white">
+                                <span
+                                  class="input-group-text border-left-0 rounded-right bg-white"
+                                  id="basic-addon1"
+                                >
+                                  <i className="fa">&#xf002;</i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
                       </Col>
                     </Row>
-                   
+
                     {loading ? (
-              <Col >
-              <Row >
-                  {users.filter(searchingFor(search)).map((data, index) => {
-                    return (
-                      
-                      <Card
-                        className="card"
-                        style={{ height: 350, width: 200, margin: 10 }}
-                      >
-                        <Card.Img
-                          variant="top"
-                          src={data.photo}
-                          style={{ height: 180, width: 200 , objectFit:'cover'}}
-                          alt="Cosupervisor"
-                        />
-                        <Card.Body>
-                    <Card.Title>{data.firstname}</Card.Title>
-                          <Card.Text
-                            style={{ fontSize: 14, color: "lightblue" }}
-                          >
-                            {data._id}
-                          </Card.Text>
-                          <button type="button" class="btn btn-danger btn-sm"
-                           onClick={() => this.deleteUser(index)}
-                          >
-                            Delete
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-warning btn-sm"
-                            style={{ marginLeft: 15, color: "white" }}
-                          >
-                            Warn User
-                          </button>
-                        </Card.Body>
-                      </Card>
-                    
-                    );
-                  })}
-                  </Row>
+                      <Col>
+                        <Row>
+                          {users
+                            .filter(searchingFor(search))
+                            .map((data, index) => {
+                              return (
+                                <Card
+                                  className="card"
+                                  style={{
+                                    height: 350,
+                                    width: 200,
+                                    margin: 10,
+                                  }}
+                                >
+                                  <Card.Img
+                                    variant="top"
+                                    src={data.photo}
+                                    style={{
+                                      height: 180,
+                                      width: 200,
+                                      objectFit: "cover",
+                                    }}
+                                    alt="Cosupervisor"
+                                  />
+                                  <Card.Body>
+                                    <Card.Title>{data.firstname}</Card.Title>
+                                    <Card.Text
+                                      style={{
+                                        fontSize: 14,
+                                        color: "lightblue",
+                                      }}
+                                    >
+                                      {data._id}
+                                    </Card.Text>
+                                    <button
+                                      type="button"
+                                      class="btn btn-danger btn-sm"
+                                      onClick={() => this.deleteUser(index)}
+                                    >
+                                      Delete
+                                    </button>
+                                  </Card.Body>
+                                </Card>
+                              );
+                            })}
+                        </Row>
                       </Col>
-              ) : (
-                <div className="Aligncenter" style={{ padding: 50 }}>
-                  <div className="spinner-border" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </div>
-                </div>
-              )}
-                 
+                    ) : (
+                      <div className="Aligncenter" style={{ padding: 50 }}>
+                        <div className="spinner-border" role="status">
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    )}
                   </Col>
                 </div>
               </div>
-              
             </Col>
             <Col className="col-sm-12">
               <hr style={{ backgroundColor: "white" }}></hr>
@@ -191,6 +199,4 @@ const {users,loading,search}=this.state
   }
 }
 
-
-
-export default (Users);
+export default Users;

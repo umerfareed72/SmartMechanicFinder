@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 import ANav from "../../Navigations/ANav";
 import AFooter from "../../Components/AFooter";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../Config/Contants";
 import { toast } from "react-toastify";
@@ -76,6 +76,7 @@ class UHelplist extends Component {
               <hr></hr>
               <h5>address:</h5>
               {userdata.address} {userdata.city} {userdata.country}
+          
             </Modal.Body>
             <Modal.Footer>
               <Button variant="danger" onClick={this.handleClose}>
@@ -132,8 +133,10 @@ class UHelplist extends Component {
                                 <div class="card-body">
                                   <Row style={{ alignItems: "center" }}>
                                     <Col className="col-sm-1">
+                                    
                                       <img
-                                        style={{
+                                    alt='help'
+                                    style={{
                                           height: 100,
                                           width: 100,
                                           borderRadius: 100,

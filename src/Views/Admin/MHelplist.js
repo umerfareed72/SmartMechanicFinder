@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 import ANav from "../../Navigations/ANav";
 import AFooter from "../../Components/AFooter";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../Config/Contants";
 import { toast } from "react-toastify";
@@ -135,6 +135,7 @@ class MHelplist extends Component {
                                   <Row style={{ alignItems: "center" }}>
                                     <Col className="col-sm-1">
                                       <img
+                                      alt='help'
                                         style={{
                                           height: 100,
                                           width: 100,

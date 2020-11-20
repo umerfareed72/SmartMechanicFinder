@@ -8,10 +8,11 @@ data:{},
 flag:false,
 users:{}
 }
-export default (state=initialState ,action={})=>{
+export default (state=initialState,action={})=>{
     switch(action.type){
         case Set_CurrentUser:return{
             isAuthenticated:!isEmpty(action.user), 
+         
             user:action.user
         }  
         case google_Login:return{

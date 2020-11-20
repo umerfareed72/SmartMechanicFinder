@@ -11,25 +11,22 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts";
-const COLORS = [
-  "GoldenRod",
-  "rgba(255,255,255,0.5)",
-  "black",
-  "Grey",
-  "#000000",
-];
+ } from "recharts";
+// const COLORS = [
+//   "GoldenRod",
+//   "rgba(255,255,255,0.5)",
+//   "black",
+//   "Grey",
+//   "#000000",
+// ];
 
-const mechanicraingdata = [
-  { name: "5 Star", value: 400 },
-  { name: "4 Star", value: 300 },
-  { name: "3 Star", value: 200 },
-  { name: "2 Star", value: 20 },
-  { name: "1 Star", value: 50 },
-];
+// const mechanicraingdata = [
+//   { name: "5 Star", value: 400 },
+//   { name: "4 Star", value: 300 },
+//   { name: "3 Star", value: 200 },
+//   { name: "2 Star", value: 20 },
+//   { name: "1 Star", value: 50 },
+// ];
 
 class AdminDashboard extends Component {
   static jsfiddleUrl = "https://jsfiddle.net/alidingling/c1rLyqj1/";
@@ -52,7 +49,6 @@ class AdminDashboard extends Component {
   }
 
   async componentDidMount() {
-    const { navigation } = this.props;
     this.getmechanicdata();
     this.getissuedata();
   }

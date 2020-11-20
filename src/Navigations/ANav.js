@@ -60,7 +60,7 @@ class ANav extends Component {
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="#"
+                  href="#sd"
                   id="navbarDropdown"
                   role="button"
                   data-toggle="dropdown"
@@ -83,7 +83,7 @@ class ANav extends Component {
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="#"
+                  href="#sad"
                   id="navbarDropdown"
                   role="button"
                   data-toggle="dropdown"

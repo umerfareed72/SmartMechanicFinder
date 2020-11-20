@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import ANav from "../../Navigations/ANav";
 import AFooter from "../../Components/AFooter";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../Config/Contants";
 import { connect } from "react-redux";

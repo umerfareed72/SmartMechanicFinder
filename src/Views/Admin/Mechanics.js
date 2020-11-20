@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Modal} from "react-bootstrap";
+
 import ANav from "../../Navigations/ANav";
 import AFooter from "../../Components/AFooter";
 import axios from "axios";
@@ -18,6 +19,9 @@ class Mechanics extends Component {
       loading: false,
       users: [],
       search: "",
+      show: false,
+      userdata: [],
+      message: "",
     };
   }
   getUser = () => {
@@ -42,12 +46,56 @@ class Mechanics extends Component {
       search: val.target.value,
     });
   };
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+  MessageChangeHandler = (val) => {
+    this.setState({
+      message: val.target.value,
+    });
+  };
+
+  sendwarning = (e) => {
+    e.preventDefault();
+    axios
+      .post(URL.Url + "sendwarning", {
+        warning: this.state.message,
+        mdbid: this.state.userdata._id,
+      })
+      .then(async (res) => {
+        console.log(res.data);
+        //console.log(this.state.mdbid);
+        toast("Warning Send Successfuly", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+ 
+        });
+        window.location.reload(false);
+ 
+      })
+      .catch((error) => {
+        toast("Wrning Not Send", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+ 
+        });
+ 
+        console.log(error);
+      });
+  };
+
+  showdetail = (id) => {
+    axios.get(URL.Url + "mechanic/" + this.state.users[id]._id).then((res) => {
+      this.setState({ show: true, userdata: res.data });
+    });
+  };
+
 
   componentDidMount() {
     this.getUser();
   }
   render() {
-    const { users, loading, search } = this.state;
+    const { users, loading, search,userdata } = this.state;
 
     return (
       <body
@@ -59,6 +107,53 @@ class Mechanics extends Component {
       >
         <ANav></ANav>
         <Container fluid>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Send Warning</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {userdata.firstname} {userdata.lastname}
+              <hr></hr>
+              {userdata.email}
+              <hr></hr>
+              {userdata.phone}
+              <hr></hr>
+              {userdata.address} {userdata.city} {userdata.country}
+              <hr></hr>
+              <form onSubmit={this.sendwarning} method="POST">
+                {" "}
+                <div class="form-group">
+                  <textarea
+                    class="form-control"
+                    rows="5"
+                    id="comment"
+                    placeholder="Explain your problem"
+                    onChange={this.MessageChangeHandler}
+                  ></textarea>
+                </div>
+                <div class="form-group" style={{ padding: 10, float: "right" }}>
+                  <button
+                    type="submit"
+                    class="btnSubmit  btn-primary "
+                    value="Login"
+                    style={{ width: 100, marginRight: 20 }}
+                  >
+                    Send
+                  </button>
+                  <button
+                    onClick={this.handleClose}
+                    type="submit"
+                    class="btnSubmit  btn-danger "
+                    value="Login"
+                    style={{ width: 100 }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </Modal.Body>
+          </Modal>
+
           <Row style={{ backgroundColor: "rgba(0,0,0,0.7)" }}>
             <Col
               className="col-sm-12 Homeimg "
@@ -167,6 +262,7 @@ class Mechanics extends Component {
                                     </button>
                                     <button
                                       type="button"
+                                      onClick={() => this.showdetail(index)}
                                       class="btn btn-warning btn-sm"
                                       style={{ marginLeft: 15, color: "white" }}
                                     >

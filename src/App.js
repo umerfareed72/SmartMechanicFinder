@@ -30,7 +30,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminDashboard from "../src/Views/Admin/AdminDashboard";
 import AdminLogin from "./Views/Registeration/AdminLogin";
 import AServiceRates from "./Views/Admin/AServiceRates";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
 import Mechanics from "./Views/Admin/Mechanics";
 import About from "./Views/User/About";
 import Users from "./Views/Admin/Users";
@@ -50,34 +50,34 @@ import {set_CurrentUser} from "./actions/index"
 import RootReducers from "./reducers/RootReducers"
 import AAbout from "./Views/Admin/AAbout";
 import AContactUs from "./Views/Admin/AContactUs";
+
 const store=createStore(RootReducers,compose(applyMiddleware(thunk)))
 if(localStorage.usertoken){
 SetAuthorizationtoken(localStorage.getItem('usertoken'))
 store.dispatch(set_CurrentUser(jwt.decode(localStorage.usertoken)))
 }
-
-
 class App extends React.Component {
-
   render() {
-
+      let state=store.getState()
+   let user=state.auth.user
+   console.log(user)  
+   
     return (
       <Provider store={store}>
       <Router>
-        <Switch>
-        <Route exact path="/" component={Login} />
+        <Switch >
          
+        <Route exact path="/" component={Login} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/Forgot" component={Forgot} />
           <Route path="/MForgot" component={MForgot} />
           <Route path="/AForgot" component={AForgot} />
-          
           <Route path="/MechanicRegister" component={MechanicRegister} />
           <Route path="/Dashboard" component={Dashboard} />
           <Route path="/ContactUs" component={ContactUs} />
           <Route path="/Setting" component={Setting} />
-          <Route path="/About" component={About} />
+          <Route path="/About" component= {About} />
           <Route path="/ServiceRates" component={ServiceRates} />
           <Route path="/Help" component={Help} />
           <Route path="/EditProfile" component={EditProfile} />
@@ -85,7 +85,11 @@ class App extends React.Component {
           <Route path="/UpdateRate" component={UpdateRate} />
          
           {/* Mechanic Routes */}
-          <Route path="/MechanicDashboard" component={MechanicDashboard} />
+         {
+   user.role=='Mechanic' && 
+   (
+     <>  
+   <Route  path="/MechanicDashboard" component={MechanicDashboard} />
           <Route path="/MAbout" component={MAbout} />
           <Route path="/MHelp" component={MHelp} />
           <Route path="/MServiceRates" component={MServiceRates} />
@@ -93,6 +97,9 @@ class App extends React.Component {
           <Route path="/MSetting" component={MSetting} />
           <Route path="/MEditProfile" component={MEditProfile} />
           <Route path="/MTermsandPolicy" component={MTermsandPolicy} />
+  </>
+          )
+        }
           {/* Admin Routes */}
           <Route path="/AdminLogin" component={AdminLogin} />
           <Route path="/AdminDashboard" component={AdminDashboard} />
