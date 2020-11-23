@@ -50,7 +50,7 @@ import {set_CurrentUser} from "./actions/index"
 import RootReducers from "./reducers/RootReducers"
 import AAbout from "./Views/Admin/AAbout";
 import AContactUs from "./Views/Admin/AContactUs";
-
+import PrivateRoute from "./PrivateRoute"
 const store=createStore(RootReducers,compose(applyMiddleware(thunk)))
 if(localStorage.usertoken){
 SetAuthorizationtoken(localStorage.getItem('usertoken'))
@@ -65,53 +65,44 @@ class App extends React.Component {
     return (
       <Provider store={store}>
       <Router>
-        <Switch >
-         
-        <Route exact path="/" component={Login} />
+        <Switch>
+        <PrivateRoute exact path="/" component={Login} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/Forgot" component={Forgot} />
           <Route path="/MForgot" component={MForgot} />
           <Route path="/AForgot" component={AForgot} />
           <Route path="/MechanicRegister" component={MechanicRegister} />
-          <Route path="/Dashboard" component={Dashboard} />
-          <Route path="/ContactUs" component={ContactUs} />
-          <Route path="/Setting" component={Setting} />
-          <Route path="/About" component= {About} />
-          <Route path="/ServiceRates" component={ServiceRates} />
-          <Route path="/Help" component={Help} />
-          <Route path="/EditProfile" component={EditProfile} />
-          <Route path="/TermsandPolicy" component={TermsandPolicy} />
-          <Route path="/UpdateRate" component={UpdateRate} />
+          <PrivateRoute path="/Dashboard" component={Dashboard} />
+           <PrivateRoute path="/ContactUs" component={ContactUs} />
+          <PrivateRoute path="/Setting" component={Setting} />
+          <PrivateRoute path="/About" component= {About} />
+          <PrivateRoute path="/ServiceRates" component={ServiceRates} />
+          <PrivateRoute path="/Help" component={Help} />
+          <PrivateRoute path="/EditProfile" component={EditProfile} />
+          <PrivateRoute path="/TermsandPolicy" component={TermsandPolicy} />
+          <PrivateRoute path="/UpdateRate" component={UpdateRate} />
+         <PrivateRoute  path="/MechanicDashboard" component={MechanicDashboard} />
          
-          {/* Mechanic Routes */}
-         {
-   user.role=='Mechanic' && 
-   (
-     <>  
-   <Route  path="/MechanicDashboard" component={MechanicDashboard} />
-          <Route path="/MAbout" component={MAbout} />
-          <Route path="/MHelp" component={MHelp} />
-          <Route path="/MServiceRates" component={MServiceRates} />
-          <Route path="/MContactUs" component={MConatctUs} />
-          <Route path="/MSetting" component={MSetting} />
-          <Route path="/MEditProfile" component={MEditProfile} />
-          <Route path="/MTermsandPolicy" component={MTermsandPolicy} />
-  </>
-          )
-        }
+          <PrivateRoute path="/MAbout" component={MAbout} />
+          <PrivateRoute path="/MHelp" component={MHelp} />
+          <PrivateRoute path="/MServiceRates" component={MServiceRates} />
+          <PrivateRoute path="/MContactUs" component={MConatctUs} />
+          <PrivateRoute path="/MSetting" component={MSetting} />
+          <PrivateRoute path="/MEditProfile" component={MEditProfile} />
+          <PrivateRoute path="/MTermsandPolicy" component={MTermsandPolicy} /> 
           {/* Admin Routes */}
-          <Route path="/AdminLogin" component={AdminLogin} />
-          <Route path="/AdminDashboard" component={AdminDashboard} />
-          <Route path="/AServiceRates" component={AServiceRates} />
-          <Route path="/Users" component={Users} />
-          <Route path="/Mechanics" component={Mechanics} />
-          <Route path="/ATermsandPolicies" component={ATermsandPolicies} />
-          <Route path="/AAbout" component={AAbout} />
-          <Route path="/AContactUs" component={AContactUs} />
+           <Route path="/AdminLogin" component={AdminLogin} />
+          <PrivateRoute path="/AdminDashboard" component={AdminDashboard} />
+          <PrivateRoute path="/AServiceRates" component={AServiceRates} />
+          <PrivateRoute path="/Users" component={Users} />
+          <PrivateRoute path="/Mechanics" component={Mechanics} />
+          <PrivateRoute path="/ATermsandPolicies" component={ATermsandPolicies} />
+          <PrivateRoute path="/AAbout" component={AAbout} />
+          <PrivateRoute path="/AContactUs" component={AContactUs} />
          
-          <Route path="/UHelplist" component={UHelplist} />
-          <Route path="/MHelplist" component={MHelplist} />
+          <PrivateRoute path="/UHelplist" component={UHelplist} />
+          <PrivateRoute path="/MHelplist" component={MHelplist} /> 
           </Switch>
       </Router>
       </Provider>

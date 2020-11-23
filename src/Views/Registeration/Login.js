@@ -6,7 +6,6 @@ import { GoogleLogin } from "react-google-login";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { connect } from "react-redux";
 import { login, userlogin, googlelogin } from "../../actions/index";
-
 toast.configure();
 class Login extends Component {
   constructor(props) {
