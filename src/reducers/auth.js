@@ -1,12 +1,13 @@
 
-import {Set_CurrentUser,google_Login, Set_Rate} from "../actions/Types"
+import {Set_CurrentUser,google_Login, Set_Rate, Set_TopMechanics} from "../actions/Types"
 import isEmpty from "lodash/isEmpty"
 const initialState={
     isAuthenticated:false,
     user:{},
 data:{},
 flag:false,
-users:{}
+users:{},
+mechanics:[]
 }
 export default (state=initialState,action={})=>{
     switch(action.type){
@@ -22,6 +23,9 @@ export default (state=initialState,action={})=>{
         case Set_Rate:return{
             users:action.users,
             }  
+            case Set_TopMechanics:return{
+                mechanics:action.mechanics,
+                }  
         default: return state
     }
 }

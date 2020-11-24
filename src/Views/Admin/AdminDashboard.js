@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Modal } from "react-bootstrap";
 import ANav from "../../Navigations/ANav";
 import AFooter from "../../Components/AFooter";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { URL } from "../../Config/Contants";
+import StarRatings from "react-star-ratings";
+
 import {
   AreaChart,
   Area,
@@ -11,7 +14,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
- } from "recharts";
+} from "recharts";
 // const COLORS = [
 //   "GoldenRod",
 //   "rgba(255,255,255,0.5)",
@@ -45,12 +48,32 @@ class AdminDashboard extends Component {
       paintissue: "",
       bookedmcount: "",
       mechaniccount: "",
+      topmechanics: [],
+      userdata: [],
+      loading: false,
     };
   }
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+  showdetail = (id) => {
+    axios
+      .get(URL.Url + "topmechanic/" + this.state.topmechanics[id]._id)
+      .then((res) => {
+        this.setState({ show: true, userdata: res.data });
+      });
+  };
+  getUser = () => {
+    axios.get(URL.Url + "topmechanics").then((res) => {
+      console.log(res.data);
+      this.setState({ topmechanics: res.data, loading: true });
+    });
+  };
 
   async componentDidMount() {
     this.getmechanicdata();
     this.getissuedata();
+    this.getUser();
   }
 
   getmechanicdata = () => {
@@ -187,6 +210,7 @@ class AdminDashboard extends Component {
   };
 
   render() {
+    const { topmechanics, loading, userdata } = this.state;
     const data = [
       {
         name: "Engine",
@@ -234,6 +258,33 @@ class AdminDashboard extends Component {
       >
         <ANav></ANav>
         <Container fluid>
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>View Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {userdata.firstname} {userdata.lastname}
+              <hr></hr>
+              {userdata.email}
+              <hr></hr>
+              {userdata.phone}
+              <hr></hr>
+              {userdata.address} {userdata.city} {userdata.country}
+              <hr></hr>
+              <div class="form-group" style={{ padding: 10, float: "right" }}>
+                <button
+                  onClick={this.handleClose}
+                  type="submit"
+                  class="btnSubmit  btn-danger "
+                  value="Login"
+                  style={{ width: 100 }}
+                >
+                  Close
+                </button>
+              </div>
+            </Modal.Body>
+          </Modal>
+
           <Row style={{ backgroundColor: "rgba(0,0,0,0.7)" }}>
             <Col
               className="col-sm-12 Homeimg "
@@ -311,9 +362,6 @@ class AdminDashboard extends Component {
               type of mechanics that tell behaviour and analysis of all
               mechanics present in application.
             </Col>
-            <Col className="col-sm-12">
-              <hr style={{ backgroundColor: "white" }}></hr>
-            </Col>
 
             <Col className="col-sm-6">
               <Col
@@ -369,9 +417,106 @@ class AdminDashboard extends Component {
                 />
               </AreaChart>
             </Col>
-            <Col className="col-sm-12">
-              <hr style={{ backgroundColor: "white" }}></hr>
+
+            <Col
+              className="col-sm-12 Aligncenter"
+              style={{ marginTop: 30, marginBottom: 30 }}
+            >
+              <h3 className="heading2">
+                <u className="ub">Top Rated Mechanics</u>
+              </h3>
             </Col>
+            {loading ? (
+              <Col>
+                <Row>
+                  {topmechanics.map((data, index) => {
+                    if (index < 5) {
+                      return (
+                        <Card
+                          className="card"
+                          style={{
+                            height: 350,
+                            width: 200,
+                            margin: 10,
+                            backgroundColor: "rgba(255,255,255,0.1)",
+                          }}
+                        >
+                          <Card.Img
+                            variant="top"
+                            src={data.photo}
+                            style={{
+                              height: 220,
+                              width: 200,
+                              objectFit: "cover",
+                            }}
+                            alt="Cosupervisor"
+                          />
+                          <Card.Body>
+                            <Card.Title>{data.firstname}</Card.Title>
+                            <StarRatings
+                              rating={data.rating}
+                              starRatedColor="gold"
+                              numberOfStars={5}
+                              name="rating"
+                              starDimension="15px"
+                              starSpacing="2px"
+                            ></StarRatings>
+                            <Button
+                              variant="btn btn-light"
+                              className="btn btn-sm"
+                              style={{ marginLeft: -3, marginTop: 5 }}
+                              onClick={() => this.showdetail(index)}
+                            >
+                              View Profile
+                            </Button>
+                          </Card.Body>
+                        </Card>
+                      );
+                    }
+                  })}
+                  <Card
+                    className="card"
+                    style={{
+                      height: 350,
+                      width: 200,
+                      margin: 10,
+                      backgroundColor: "rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    <Card.Header style={{ backgroundColor: "lightgrey" }}>
+                      <Card.Text style={{ textAlign: "center" }}>
+                        {" "}
+                        Want To See Top Mechanics
+                      </Card.Text>
+                    </Card.Header>
+                    <Card.Body>
+                      <Card.Title style={{ textAlign: "center" }}>
+                        What we are?
+                      </Card.Title>
+                      <Card.Text
+                        style={{
+                          fontSize: 14,
+                          color: "whitesmoke",
+                        }}
+                      >
+                        Our Top Mechanics provide great services to our
+                        customers.Top Mechanics profile are analyzed after a
+                        complete analysis of user feedback.For viewing more top
+                        rated and good mechanics.{" "}
+                        <Link to="TopMechanics">Go To View All</Link>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Row>
+              </Col>
+            ) : (
+              <div className="Aligncenter" style={{ padding: 50 }}>
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+            )}
+
             <Col
               className="col-sm-12 Aligncenter"
               style={{ marginTop: 50, marginBottom: 50 }}

@@ -51,6 +51,7 @@ import RootReducers from "./reducers/RootReducers"
 import AAbout from "./Views/Admin/AAbout";
 import AContactUs from "./Views/Admin/AContactUs";
 import PrivateRoute from "./PrivateRoute"
+import TopMechanics from "./Views/Admin/TopMechanics";
 const store=createStore(RootReducers,compose(applyMiddleware(thunk)))
 if(localStorage.usertoken){
 SetAuthorizationtoken(localStorage.getItem('usertoken'))
@@ -100,7 +101,7 @@ class App extends React.Component {
           <PrivateRoute path="/ATermsandPolicies" component={ATermsandPolicies} />
           <PrivateRoute path="/AAbout" component={AAbout} />
           <PrivateRoute path="/AContactUs" component={AContactUs} />
-         
+         <PrivateRoute path='/TopMechanics' component={TopMechanics}></PrivateRoute>
           <PrivateRoute path="/UHelplist" component={UHelplist} />
           <PrivateRoute path="/MHelplist" component={MHelplist} /> 
           </Switch>

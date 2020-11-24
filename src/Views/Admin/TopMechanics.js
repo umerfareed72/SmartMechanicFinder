@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Modal, Button } from "react-bootstrap";
+import StarRatings from "react-star-ratings";
+
 import ANav from "../../Navigations/ANav";
 import AFooter from "../../Components/AFooter";
-
 import axios from "axios";
 import { URL } from "../../Config/Contants";
 import { toast } from "react-toastify";
@@ -12,44 +13,63 @@ function searchingFor(term) {
     return x.firstname.toLowerCase().includes(term.toLowerCase()) || !term;
   };
 }
-class Users extends Component {
+class TopMechanics extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       users: [],
       search: "",
+      show: false,
+      userdata: [],
+      message: "",
     };
   }
   getUser = () => {
-    axios.get(URL.Url + "users").then((res) => {
+    axios.get(URL.Url + "topmechanics").then((res) => {
       this.setState({ users: res.data, loading: true });
     });
   };
 
   deleteUser = (id) => {
     axios
-      .delete(URL.Url + "deleteuser/" + this.state.users[id]._id)
+      .delete(URL.Url + "deletemechanic/" + this.state.users[id]._id)
       .then((del) => {
-        toast("User Deleted", {
+        toast("Mechanic Deleted", {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 1500,
         });
         window.location.reload(false);
       });
   };
-
-  componentDidMount() {
-    this.getUser();
-  }
   userChangeHandler = (val) => {
     this.setState({
       search: val.target.value,
     });
   };
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+  MessageChangeHandler = (val) => {
+    this.setState({
+      message: val.target.value,
+    });
+  };
 
+  showdetail = (id) => {
+    axios
+      .get(URL.Url + "topmechanic/" + this.state.users[id]._id)
+      .then((res) => {
+        this.setState({ show: true, userdata: res.data });
+      });
+  };
+
+  componentDidMount() {
+    this.getUser();
+  }
   render() {
-    const { users, loading, search } = this.state;
+    const { users, loading, search, userdata } = this.state;
+
     return (
       <body
         style={{
@@ -60,6 +80,33 @@ class Users extends Component {
       >
         <ANav></ANav>
         <Container fluid>
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>View Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {userdata.firstname} {userdata.lastname}
+              <hr></hr>
+              {userdata.email}
+              <hr></hr>
+              {userdata.phone}
+              <hr></hr>
+              {userdata.address} {userdata.city} {userdata.country}
+              <hr></hr>
+              <div class="form-group" style={{ padding: 10, float: "right" }}>
+                <button
+                  onClick={this.handleClose}
+                  type="submit"
+                  class="btnSubmit  btn-danger "
+                  value="Login"
+                  style={{ width: 100 }}
+                >
+                  Close
+                </button>
+              </div>
+            </Modal.Body>
+          </Modal>
+
           <Row style={{ backgroundColor: "rgba(0,0,0,0.7)" }}>
             <Col
               className="col-sm-12 Homeimg "
@@ -67,7 +114,7 @@ class Users extends Component {
             >
               <Col className="col-sm-12">
                 <Col className="Aligncenter">
-                  <h4 className="heading4white orange">Users</h4>
+                  <h4 className="heading4white orange">Mechanics</h4>
                 </Col>
                 <Col className="col-sm-12">
                   <Col className="Aligncenter">
@@ -79,7 +126,7 @@ class Users extends Component {
                 <Col className="col-sm-12">
                   <Col className="Aligncenter">
                     <p className="heading4white smokewhite">
-                      Manage User Profiles
+                    Top Mechanic Profiles
                     </p>
                   </Col>
                 </Col>
@@ -95,7 +142,7 @@ class Users extends Component {
                         style={{ marginTop: 30, marginBottom: 30 }}
                       >
                         <h3 className="heading2">
-                          <u className="ub">Manage User Profile</u>
+                          <u className="ub">Top Mechanics Profiles</u>
                         </h3>
                       </Col>
                       <Col
@@ -138,16 +185,17 @@ class Users extends Component {
                                 <Card
                                   className="card"
                                   style={{
-                                   
+                                    height: 350,
                                     width: 200,
                                     margin: 10,
+                                    backgroundColor: "rgba(255,255,255,0.1)",
                                   }}
                                 >
                                   <Card.Img
                                     variant="top"
                                     src={data.photo}
                                     style={{
-                                      height: 180,
+                                      height: 220,
                                       width: 200,
                                       objectFit: "cover",
                                     }}
@@ -155,22 +203,24 @@ class Users extends Component {
                                   />
                                   <Card.Body>
                                     <Card.Title>{data.firstname}</Card.Title>
-                                    <Card.Text
-                                      style={{
-                                        fontSize: 14,
-                                        color: "lightblue",
-                                      }}
-                                    >
-                                      {data._id}
-                                    </Card.Text>
-                                    <button
-                                      type="button"
-                                      class="btn btn-danger btn-sm"
-                                      onClick={() => this.deleteUser(index)}
-                                    >
-                                      Delete
-                                    </button>
+                                    <StarRatings
+                                      rating={data.rating}
+                                      starRatedColor="gold"
+                                      numberOfStars={5}
+                                      name="rating"
+                                      starDimension="15px"
+                                      starSpacing="2px"
+                                    ></StarRatings>
                                   </Card.Body>
+                                  <Button
+                                    onClick={() => {
+                                      this.showdetail(index);
+                                    }}
+                                    className="btn btn-sm"
+                                    variant="btn btn-info"
+                                  >
+                                    View Profile
+                                  </Button>
                                 </Card>
                               );
                             })}
@@ -199,4 +249,4 @@ class Users extends Component {
   }
 }
 
-export default Users;
+export default TopMechanics;

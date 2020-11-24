@@ -232,7 +232,7 @@ class Mechanics extends Component {
                                 <Card
                                   className="card"
                                   style={{
-                                    height: 350,
+                                  
                                     width: 200,
                                     margin: 10,
                                   }}

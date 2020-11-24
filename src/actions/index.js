@@ -1,7 +1,7 @@
 import axios from "axios";
 import { URL } from "../Config/Contants";
 import SetAuthorizationtoken from "../Config/SetAututhorizationtoken";
-import { Set_CurrentUser, google_Login, Set_Rate } from "../actions/Types";
+import { Set_CurrentUser, google_Login, Set_Rate, Set_TopMechanics } from "../actions/Types";
 import jwt from "jsonwebtoken";
 import { toast } from "react-toastify";
 toast.configure();
@@ -79,5 +79,14 @@ export function SetRate(users) {
   return {
     type: Set_Rate,
     users,
+  };
+}
+
+
+export function SetTopMechanic(mechanics) {
+  console.log(mechanics);
+  return {
+    type: Set_TopMechanics,
+    mechanics,
   };
 }
