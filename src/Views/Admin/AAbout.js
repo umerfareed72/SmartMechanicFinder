@@ -391,5 +391,4 @@ class AAbout extends Component {
     );
   }
 }
-
 export default AAbout;
